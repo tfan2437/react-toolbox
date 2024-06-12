@@ -67,7 +67,7 @@ export default StudentCard;`,
   {
     title: "Props",
     description:
-      "Props pass data and event handlers from parent to child components, enabling component customization and reuse.",
+      "Props pass data from parent to child components, enabling component customization and reuse.",
     code: `
 const Students = () => {
   return (

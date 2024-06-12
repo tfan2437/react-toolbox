@@ -1,6 +1,6 @@
 import reactLogo from "../../assets/images/react-guide-logo.png";
 
-const GuideHeader = () => {
+const ConceptHeader = () => {
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -17,4 +17,4 @@ const GuideHeader = () => {
   );
 };
 
-export default GuideHeader;
+export default ConceptHeader;

@@ -1,11 +1,5 @@
-import Guide from "./components/guide/Guide";
-
 function App() {
-  return (
-    <div>
-      <Guide />
-    </div>
-  );
+  return <div>app</div>;
 }
 
 export default App;

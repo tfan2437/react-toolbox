@@ -1,11 +1,10 @@
-import FetchPokemon from "./components/pokeAPI/FetchPokemon";
-import FetchPractice from "./components/pokeAPI/FetchPractice";
+import Auth from "./components/auth/Auth";
 
 function App() {
   return (
-    <div>
-      <FetchPokemon />
-    </div>
+    <>
+      <Auth />
+    </>
   );
 }
 

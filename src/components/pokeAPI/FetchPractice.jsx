@@ -1,48 +1,49 @@
 import { useState } from "react";
 
 const FetchPractice = () => {
-  const [search, setSearch] = useState("");
+  const [searchName, setSearchName] = useState("");
   const [pokemonData, setPokemonData] = useState(null);
 
-  const fetchPokemonbyName = async (searchName) => {
+  const fetchPokeData = async (name) => {
     try {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${searchName}`
-      );
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+
       if (!response.ok) {
-        throw new Error("Could not fetch the pokemon data through PokeAPI.");
+        setSearchName(null);
+        throw new Error("Could not fetch the data.");
       }
 
       const data = await response.json();
-      console.log(data);
       setPokemonData(data);
+      console.log(pokemonData);
     } catch (error) {
-      console.error("Could not fetch the pokemon data through PokeAPI.", error);
+      console.error(error);
     }
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(search);
-    fetchPokemonbyName(search);
+    fetchPokeData(searchName);
+    console.log(searchName);
+    console.log("Fetching Pokemon data success");
   };
 
   return (
     <div>
-      <h1>FetchPokemon</h1>
-      <h2>Your Searching Pokemon Name: {search}</h2>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={(e) => handleSearch(e)}>
         <input
           type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          value={searchName}
+          onChange={(e) => {
+            setSearchName(e.target.value.toLowerCase());
+          }}
         />
         <button type="submit">Search</button>
       </form>
       {pokemonData && (
         <div>
-          <h3>Pokemon Name: {pokemonData.name}</h3>
-          <h3>Pokemon ID: {pokemonData.id}</h3>
+          <h3>Name: {pokemonData.name}</h3>
+          <h3>ID: {pokemonData.id}</h3>
           <img src={pokemonData.sprites.front_default} alt="" />
         </div>
       )}

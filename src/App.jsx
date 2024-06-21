@@ -1,9 +1,9 @@
-import Auth from "./components/auth/Auth";
+import ToDoList from "./components/toDoList/ToDoList";
 
 function App() {
   return (
     <>
-      <Auth />
+      <ToDoList />
     </>
   );
 }

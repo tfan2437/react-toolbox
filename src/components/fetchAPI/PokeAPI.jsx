@@ -1,21 +1,19 @@
 import { useState } from "react";
 
-const FetchPractice = () => {
+const PokeAPI = () => {
   const [searchName, setSearchName] = useState("");
-  const [pokemonData, setPokemonData] = useState(null);
+  const [pokeData, setPokeData] = useState(null);
 
-  const fetchPokeData = async (name) => {
+  const fetchPokemonAPI = async (name) => {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-
       if (!response.ok) {
-        setSearchName(null);
-        throw new Error("Could not fetch the data.");
+        setPokeData(null);
+        throw new Error("Could not fetch data from PokeAPI");
       }
-
       const data = await response.json();
-      setPokemonData(data);
-      console.log(pokemonData);
+      setPokeData(data);
+      console.log(pokeData);
     } catch (error) {
       console.error(error);
     }
@@ -23,9 +21,7 @@ const FetchPractice = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchPokeData(searchName);
-    console.log(searchName);
-    console.log("Fetching Pokemon data success");
+    fetchPokemonAPI(searchName);
   };
 
   return (
@@ -40,15 +36,15 @@ const FetchPractice = () => {
         />
         <button type="submit">Search</button>
       </form>
-      {pokemonData && (
+      {pokeData && (
         <div>
-          <h3>Name: {pokemonData.name}</h3>
-          <h3>ID: {pokemonData.id}</h3>
-          <img src={pokemonData.sprites.front_default} alt="" />
+          <h3>Name: {pokeData.name}</h3>
+          <h3>ID: {pokeData.id}</h3>
+          <img src={pokeData.sprites.front_default} alt="" />
         </div>
       )}
     </div>
   );
 };
 
-export default FetchPractice;
+export default PokeAPI;

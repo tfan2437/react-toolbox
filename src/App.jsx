@@ -1,9 +1,9 @@
-import ToDoList from "./components/toDoList/ToDoList";
+import PredictAgeAPI from "./components/fetchAPI/PredictAgeAPI";
 
 function App() {
   return (
     <>
-      <ToDoList />
+      <PredictAgeAPI />
     </>
   );
 }

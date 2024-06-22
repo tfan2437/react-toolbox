@@ -1,24 +1,24 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import HomePage from "./components/pages/HomePage";
 import NotFoundPage from "./components/pages/NotFoundPage";
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
-      <Route index element={<HomePage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Route>
-  )
-);
+import Profile from "./components/context/Profile";
+import AppContextProvider from "./components/context/AppContext";
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AppContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AppContextProvider>
+  );
 };
 
 export default App;
